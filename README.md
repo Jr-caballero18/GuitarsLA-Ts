@@ -54,7 +54,7 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 ![Aumentar y disminuir cantidad de guitarras](./public/img/aumentar_cantidad.gif)
 
 #### Eliminar guitarra
-![Eliminar una guitarra](./public/img/Eliminar guitar.gif)
+![Eliminar una guitarra](./public/img/Eliminar%20guitar.gif)
 
 #### Vaciar carrito
 ![Vaciar Carrito de compras](./public/img/vaciar_carrito.gif)
