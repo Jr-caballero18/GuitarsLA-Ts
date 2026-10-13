@@ -6,7 +6,6 @@
 **GuitarLA** es una aplicación web interactiva de comercio electrónico enfocada en la exhibición y venta de un catálogo de guitarras. Su propósito principal es resolver la gestión en tiempo real de un carrito de compras interactivo, permitiendo a los usuarios consultar productos, agregar ítems, incrementar o reducir unidades, eliminar artículos específicos, vaciar el carrito por completo y calcular el costo total a pagar de forma dinámica sin recargar la página.
 
 ### Capturas de pantalla o GIF demostrativo de la interfaz en funcionamiento
-![Interfaz de GuitarLA]()
 
 ![Demostración de la interfaz](./public/img/interfaz.png)
 
