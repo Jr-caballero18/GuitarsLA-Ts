@@ -42,14 +42,13 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 ### 1.4 Capturas de pantalla de la aplicación
 
 #### Página principal y colección de guitarras
-![Página Principal](./public/img/interaz.svg)
+![Página Principal](./public/img/interfaz.svg)
 
 #### Carrito de compras
 ![Carrito de compras](./public/img/cart.png)
 
 #### Agregar guitarra
 ![Agregar al carro](./public/img/agregar_guitar.png)
-
 
 #### Aumentar y disminuir cantidad
 ![Aumentar y disminuir cantidad de guitarras](./public/img/aumentar_cantidad.gif)
@@ -59,9 +58,6 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 
 #### Vaciar carrito
 ![Vaciar Carrito de compras](./public/img/vaciar_carrito.gif)
-
-
-
 
 
 
@@ -122,6 +118,7 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 
 La aplicación está organizada en componentes presentacionales, un contenedor principal y lógica encapsulada en un Custom Hook:
 
+```text
 GuitarsLA-Ts/
 ├── public/
 │   └── img/
@@ -142,6 +139,7 @@ GuitarsLA-Ts/
 ├── tsconfig.json
 ├── vite.config.ts
 └── README.md
+```
 
 ### 3.2 Hooks nativos de React
 
@@ -261,11 +259,43 @@ El catálogo de productos se provee de manera síncrona a través de una colecci
 ## 6. Puesta en Marcha
 
 ### 6.1 Requisitos previos
-- **Node.js** (v18.0.0 o superior)
-- **npm** (v9.0.0 o superior)
-- **Git**
+
+Para ejecutar la aplicación **GuitarsLA-Ts** en un entorno local, verifica contar con las siguientes herramientas:
+
+* **Git:** Para clonar el repositorio y sincronizar el historial de versiones.
+* **Node.js:** Entorno de ejecución de JavaScript (versión recomendada **v18.0.0** o superior).
+* **npm:** Gestor de paquetes para instalar y administrar las dependencias de React y TypeScript.
+* **Editor de código:** Se recomienda **Visual Studio Code** con extensiones para TypeScript y React.
+* **Navegador web:** Google Chrome, Firefox, Edge o Safari con soporte para `localStorage`.
+
+---
 
 ### 6.2 Clonar el repositorio
+
+Abre una terminal y ejecuta el comando de clonación:
+
 ```bash
 git clone [https://github.com/Jr-caballero18/GuitarsLA-Ts.git](https://github.com/Jr-caballero18/GuitarsLA-Ts.git)
+````
 
+### 6.3 Entrar a la carpeta del proyecto
+
+cd GuitarsLA-Ts
+
+### 6.4 Instalar las dependencias
+
+npm install
+
+### 6.5 Ejecutar el entorno local
+
+Inicia el servidor de desarrollo local mediante Vite:
+
+npm run dev
+
+## Conclusión
+
+**GuitarsLA-Ts** representa una solución moderna, eficiente y estructurada para la simulación de una tienda virtual de instrumentos musicales. A través de la combinación de **React 18** y **TypeScript**, el proyecto logra un equilibrio óptimo entre reactividad visual y seguridad en el manejo de tipos, evitando errores comunes en tiempo de ejecución mediante la definición clara de contratos e interfaces (`CartProps`, `GuitarProps`).
+
+La arquitectura implementada destaca por la separación de responsabilidades: los componentes de la interfaz (`Guitar.tsx`, `Header.tsx`) se enfocan exclusivamente en la representación gráfica, mientras que la lógica del negocio se desacopla eficientemente dentro del Custom Hook `useCart`. Asimismo, el uso de patrones inmutables para la modificación de estados, el aprovechamiento de hooks nativos como `useMemo` para la optimización de valores derivados y la persistencia automatizada mediante `localStorage` garantizan un rendimiento fluido y una experiencia de usuario consistente.
+
+Este proyecto sienta una base sólida para futuras expansiones, tales como la integración de un backend asíncrono para la consulta de productos en tiempo real, autenticación de usuarios o pasarelas de pago.
