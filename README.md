@@ -7,8 +7,12 @@
 
 ### Capturas de pantalla o GIF demostrativo de la interfaz en funcionamiento
 ![Interfaz de GuitarLA]()
-![Uploading image.png…]()
-![Uploading image.png…]()
+
+![Demostración de la interfaz](./public/img/interfaz.png)
+
+![Carrito](./public/img/cart.png)
+
+
 
 
 
