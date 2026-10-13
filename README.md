@@ -30,13 +30,13 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 ### 1.3 Funcionalidades principales
 
 - Visualización dinámica del catálogo de guitarras.
-- Presentación detallada del nombre, imagen, descripción y precio de cada instrumento[cite: 3].
-- Agregado de productos al carrito de compras desde el catálogo[cite: 1, 3].
-- Incrementar y decrementar unidades de un producto dentro del carrito[cite: 1, 4].
-- Eliminación individual de artículos del carrito mediante su identificador[cite: 1, 4].
-- Opción para vaciar completamente el carrito de compras[cite: 1, 4].
-- Cálculo automatizado e inmutable del monto total a pagar[cite: 1].
-- Evaluación de estado derivado para detectar si el carrito se encuentra vacío (`isEmpty`)[cite: 1, 4].
+- Presentación detallada del nombre, imagen, descripción y precio de cada instrumento.
+- Agregado de productos al carrito de compras desde el catálogo.
+- Incrementar y decrementar unidades de un producto dentro del carrito.
+- Eliminación individual de artículos del carrito mediante su identificador.
+- Opción para vaciar completamente el carrito de compras.
+- Cálculo automatizado e inmutable del monto total a pagar.
+- Evaluación de estado derivado para detectar si el carrito se encuentra vacío (`isEmpty`).
 - Conservación automática de los productos seleccionados mediante `localStorage`.
 
 ### 1.4 Capturas de pantalla de la aplicación
