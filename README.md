@@ -1,110 +1,107 @@
-# Documentación Técnica: GuitarLA - Tienda Virtual de Guitarras
+# GuitarsLA-Ts
+
+Aplicación web de una tienda de guitarras desarrollada con React y TypeScript. Permite visualizar una colección de instrumentos y administrar un carrito de compras mediante componentes reutilizables y un hook personalizado.
+
+## Índice
+
+- [1. Visión General del Proyecto](#1-visión-general-del-proyecto)
+- [2. Ficha Técnica y Tecnologías](#2-ficha-técnica-y-tecnologías)
+- [3. Arquitectura e Implementación en React](#3-arquitectura-e-implementación-en-react)
+- [4. Patrones y Buenas Prácticas](#4-patrones-y-buenas-prácticas)
+- [5. Manejo de Estado y Persistencia](#5-manejo-de-estado-y-persistencia)
+- [6. Puesta en Marcha](#6-puesta-en-marcha)
 
 ---
 
-## Visión General del Proyecto
-**GuitarLA** es una aplicación web interactiva de comercio electrónico enfocada en la exhibición y venta de un catálogo de guitarras. Su propósito principal es resolver la gestión en tiempo real de un carrito de compras interactivo, permitiendo a los usuarios consultar productos, agregar ítems, incrementar o reducir unidades, eliminar artículos específicos, vaciar el carrito por completo y calcular el costo total a pagar de forma dinámica sin recargar la página.
+## 1. Visión General del Proyecto
 
-### Capturas de pantalla o GIF demostrativo de la interfaz en funcionamiento
+### 1.1 Nombre y propósito de la aplicación
 
-![Demostración de la interfaz](./public/img/interfaz.png)
+**Nombre:** GuitarsLA-Ts.
 
-![Carrito](./public/img/cart.png)
+GuitarsLA-Ts es una aplicación web interactiva que simula una tienda virtual de instrumentos musicales. Su propósito principal es permitir a los usuarios consultar un catálogo de guitarras, agregar instrumentos a un carrito de compras interactivo, modificar las cantidades de cada producto, eliminar elementos individualmente, vaciar el carrito completo y calcular el importe total a pagar en tiempo real.
+
+La aplicación fue desarrollada utilizando React y TypeScript, estructurando el sistema en componentes reutilizables y desacoplando la lógica de negocio en un hook personalizado (*Custom Hook*).
+
+### 1.2 Problema que resuelve
+
+La aplicación resuelve la necesidad de administrar las interacciones de un carrito de compras en una tienda digital sin necesidad de recargar la página ni realizar peticiones innecesarias al servidor. Facilita la exploración visual de productos, el cálculo dinámico de subtotales y la persistencia de la selección del usuario durante su sesión de navegación.
+
+### 1.3 Funcionalidades principales
+
+- Visualización dinámica del catálogo de guitarras.
+- Presentación detallada del nombre, imagen, descripción y precio de cada instrumento[cite: 3].
+- Agregado de productos al carrito de compras desde el catálogo[cite: 1, 3].
+- Incrementar y decrementar unidades de un producto dentro del carrito[cite: 1, 4].
+- Eliminación individual de artículos del carrito mediante su identificador[cite: 1, 4].
+- Opción para vaciar completamente el carrito de compras[cite: 1, 4].
+- Cálculo automatizado e inmutable del monto total a pagar[cite: 1].
+- Evaluación de estado derivado para detectar si el carrito se encuentra vacío (`isEmpty`)[cite: 1, 4].
+- Conservación automática de los productos seleccionados mediante `localStorage`.
+
+### 1.4 Capturas de pantalla de la aplicación
+
+#### Página principal y colección de guitarras
+![Página Principal](./public/img/logo.svg)
+
+#### Carrito de compras
+![Carrito de compras](./public/img/cart.png)
 
 
 
+### 1.5 Repositorio y despliegue
 
-
-### Enlace al despliegue en producción 
-* **Demo Activa:** Entorno local en `http://localhost:5173`
-
----
-
-## Ficha técnica
-
-### Lenguajes, versiones y dependencias clave utilizadas
-* **JavaScript ES6+ / TypeScript:** Desarrollado sobre TypeScript utilizando un nivel de tipado estático estricto mediante interfaces y declaraciones de tipos personalizadas (`types.d.ts`), garantizando autocompletado y validación de tipos en componentes y datos (`.tsx` y `.ts`).
-* **React:** Versión 18+ (Librería principal orientada a la arquitectura de componentes declarativos).
-* **Vite:** Entorno de desarrollo rápido y empaquetador de módulos (Bundler).
-* **Estilos / Layout:** Integración de grid layout y clases utilitarias de Bootstrap / CSS (`container-xl`, `row`, `col-md-6`, `flex`, `gap-4`, `table`, etc.).
-* **npm:** Gestor de paquetes del proyecto.
-* **Dependencias Clave:**
-  * `@types/react`: Definiciones de tipos para React.
-  * `@types/react-dom`: Definiciones de tipos para React DOM.
-  * `typescript`: Compilador y motor de tipos estáticos.
-
----
-
-## Arquitectura React & Hooks
-
-#### Hooks Estándar
-
-* **useState:**
-  * **Motivo e implementación:** Administra estados locales como la lista del carrito de compras, el catálogo de productos y banderas de la interfaz de usuario.
-* **useEffect:**
-  * **Motivo e implementación:** Maneja los efectos secundarios y el ciclo de vida del componente, como la persistencia en `localStorage` y la sincronización con fuentes de datos externas o listeners.
-* **useRef:**
-  * **Motivo e implementación:** Se utiliza para mantener referencias directas a elementos del DOM sin provocar re-renderizados innecesarios en la interfaz.
-* **useMemo:**
-  * **Motivo e implementación:** Optimiza el rendimiento al memorizar y almacenar en caché cálculos pesados derivados, como los totales del carrito e indicadores de estado en `Header.tsx`.
-* **useCallback:**
-  * **Motivo e implementación:** Memoriza la definición de funciones controladoras pasadas como props para evitar la recreación de funciones en cada renderizado.
-* **useContext / useReducer:**
-  * **Motivo e implementación:** Permiten la gestión de estado global y flujos complejos. En esta aplicación, el estado se simplifica y desacopla mediante el Custom Hook `useCart`.
-
-#### Custom Hooks (Hooks Personalizados)
-
-* **`useCart`:**
-  * **Motivo de implementación:** Desacopla y encapsula toda la lógica de negocio del carrito de compras fuera de la capa de presentación (componentes UI), facilitando la reutilización, legibilidad y mantenimiento del código.
-  * **Lógica encapsulada:** Administra la adición de productos, modificación de cantidades, eliminación de ítems, cálculo de montos totales, limpieza completa del carrito y verificación del estado vacío.
-  * **Ubicación y valores/métodos expuestos:** Se consume en `App.tsx` y expone:
-    * `cart`: Lista de elementos guardados en el carrito con sus cantidades.
-    * `data`: Colección local de guitarras de la base de datos/catálogo.
-    * `handlerClick(guitar)`: Agrega una guitarra al carrito o incrementa sus unidades si ya existe.
-    * `increaseQuantity(id)`: Incrementar la cantidad de un producto.
-    * `decreaseQuantity(id)`: Decrementar la cantidad de un producto.
-    * `removeFromCart(id)`: Eliminar un artículo específico por su ID.
-    * `emptyCart()`: Vacía todos los elementos del carrito.
-    * `calculateTotal()`: Calcula el total global acumulado.
-    * `isEmpty`: Estado derivado para validar si el carrito carece de artículos.
+- **Repositorio de GitHub:** [https://github.com/Jr-caballero18/GuitarsLA-Ts.git](https://github.com/Jr-caballero18/GuitarsLA-Ts.git)
+- **Despliegue en producción:** No se cuenta con una URL de producción activa confirmada. La aplicación se ejecuta en entorno local en `http://localhost:5173`.
 
 ---
 
-## Patrones y Buenas Prácticas
+## 2. Ficha Técnica y Tecnologías
 
-### Manejo de componentes
-Se aplica una separación clara entre componentes contenedores/inteligentes (Smart Components) y componentes presentacionales (Dumb Components):
-* **Componentes Inteligentes:** `App.tsx` actúa como contenedor principal, gestionando la invocación de `useCart` y la distribución de controladores de eventos hacia las vistas.
-* **Componentes Presentacionales:** 
-  * `Header.tsx`: Renderiza la navegación, el logotipo y la tabla desplegable del carrito interactivo consumiendo props.
-  * `Guitar.tsx`: Renderiza la tarjeta de producto individual e invoca `handlerClick` para agregar ítems.
+### 2.1 Lenguajes de programación
 
-### Tipado
-El paso de parámetros e interfaces de datos está fuertemente tipado mediante TypeScript (`CartProps`, `GuitarProps`), evitando errores en tiempo de ejecución y asegurando que las props cumplan la estructura esperada.
+| Tecnología | Uso en el proyecto |
+| :--- | :--- |
+| **TypeScript** | Proporciona tipado estático estricto para describir las propiedades de componentes, modelos de datos y estructuras de productos (`.tsx` y `.ts`)[cite: 1, 2, 3, 4]. |
+| **JavaScript ES6+** | Base de ejecución de la aplicación React; se utilizan funciones flecha, desestructuración, iteradores y métodos inmutables de arreglos (`map`, `filter`)[cite: 1, 3, 4]. |
+| **TSX** | Sintaxis que permite escribir componentes de React combinando TypeScript con la estructura declarativa de JSX[cite: 1, 2, 3, 4]. |
+| **CSS** | Define los estilos globales y las reglas de presentación de la aplicación[cite: 2]. |
 
-### Modularización
-El proyecto se organiza dividiendo responsabilidades en archivos independientes para componentes (`Header.tsx`, `Guitar.tsx`), hooks personalizados (`useCart.ts`) y tipos compartidos, manteniendo un código limpio y escalable.
+**Nivel de tipado:** Tipado estático mediante TypeScript. Se emplean definiciones explícitas (`types.d.ts`) como `CartProps` y `GuitarProps` para garantizar la integridad de los datos en el flujo de la aplicación[cite: 3, 4].
 
-### Gestión de estado e inmutabilidad
-Se implementa una arquitectura con elevación de estado (*State Hoisting*) centralizada en `useCart`, permitiendo un flujo de datos unidireccional (*Unidirectional Data Flow*) hacia los componentes. Las mutaciones de datos evitan modificar directamente el estado anterior, utilizando métodos declarativos inmutables (`.map`, `.filter`, operador de propagación).
+### 2.2 Framework y librerías de interfaz
 
-### Persistencia de datos
-Se utiliza `localStorage` para almacenar de forma persistente el contenido del carrito, garantizando que la selección del usuario no se pierda al recargar o cerrar la pestaña del navegador.
+| Tecnología | Función |
+| :--- | :--- |
+| **React 18** | Construcción de la interfaz de usuario mediante componentes funcionales y hooks declarativos[cite: 2]. |
+| **React DOM** | Encargado del renderizado y montaje de la aplicación en el DOM del navegador[cite: 2]. |
+| **Bootstrap / Utility CSS** | Maquetación responsiva, grillas (`container-xl`, `row`, `col-md-6`), tablas y estilos para botones[cite: 1, 3, 4]. |
+| **CSS** | Estilos globales y personalización de la interfaz[cite: 2]. |
+
+### 2.3 Entorno de desarrollo y herramientas
+
+| Herramienta | Función |
+| :--- | :--- |
+| **Vite** | Servidor de desarrollo ultrarrápido y empaquetador de módulos (*bundler*)[cite: 2]. |
+| **npm** | Gestor de paquetes utilizado para instalar y administrar las dependencias del proyecto[cite: 2]. |
+| **Git** | Sistema de control de versiones distribuido. |
+| **GitHub** | Plataforma de alojamiento para el repositorio remoto. |
+| **Visual Studio Code** | Editor de código fuente utilizado para el desarrollo. |
+
+### 2.4 Dependencias clave
+
+- `react`: Librería principal para la creación de componentes y gestión de estados/hooks[cite: 2].
+- `react-dom`: Módulo para renderizar la aplicación en el entorno web[cite: 2].
+- `typescript`: Compilador que añade verificación de tipos en tiempo de desarrollo[cite: 2].
+- `@types/react` / `@types/react-dom`: Paquetes con definiciones de tipos para React[cite: 2].
+- `vite`: Herramienta de compilación y servidor local[cite: 2].
+
+*Nota:* No se utiliza un cliente HTTP externo ni enrutamiento dinámico; la información de los productos se importa desde una colección estática local.
 
 ---
 
-## Puesta en marcha
+## 3. Arquitectura e Implementación en React
 
-### Instrucciones paso a paso para clonar, instalar variables/dependencias y ejecutar el entorno local
+### 3.1 Organización de la aplicación
 
-#### Prerrequisitos
-* Node.js (v18.0.0 o superior)
-* npm (v9.0.0 o superior)
-
-#### Pasos de instalación y ejecución
-
-1. **Clonar el repositorio:**
-   git clone [https://github.com/Jr-caballero18/GuitarsLA-Ts.git]
-   
-2. **Ejecutar el siguiente comando en la terminal estando en la direccion del proyecto:**
-   npm run dev
+La aplicación está organizada en componentes presentacionales, un contenedor principal y lógica encapsulada en un Custom Hook:
