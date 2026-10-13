@@ -275,7 +275,7 @@ Para ejecutar la aplicación **GuitarsLA-Ts** en un entorno local, verifica cont
 Abre una terminal y ejecuta el comando de clonación:
 
 ```bash
-git clone [https://github.com/Jr-caballero18/GuitarsLA-Ts.git](https://github.com/Jr-caballero18/GuitarsLA-Ts.git)
+git clone [https://github.com/Jr-caballero18/GuitarsLA-Ts.git]
 ````
 
 ### 6.3 Entrar a la carpeta del proyecto
