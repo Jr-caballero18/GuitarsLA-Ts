@@ -42,7 +42,7 @@ La aplicación resuelve la necesidad de administrar las interacciones de un carr
 ### 1.4 Capturas de pantalla de la aplicación
 
 #### Página principal y colección de guitarras
-![Página Principal](./public/img/interfaz.svg)
+![Página Principal](./public/img/interfaz.png)
 
 #### Carrito de compras
 ![Carrito de compras](./public/img/cart.png)
